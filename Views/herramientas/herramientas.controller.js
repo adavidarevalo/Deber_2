@@ -18,31 +18,27 @@ const todos_controlador = () => {
   todos.todos();
 };
 
-
 const eliminar = async herramientaId => {
   const todos = new Herramientas_Model('', '', '', '', '', 'todos');
   await todos.eliminar(herramientaId);
   await todos.todos();
 };
 
-const guardaryeditar = async (e) => {
+const guardaryeditar = async e => {
   e.preventDefault();
   const formData = new FormData();
 
-   $(e.target)
-     .serializeArray()
-     .forEach(field => {
+  $(e.target)
+    .serializeArray()
+    .forEach(field => {
       formData.append(field.name, field.value);
-     });
+    });
 
   const todos = new Herramientas_Model('', '', '', '', '', '');
   await todos.insertar(formData);
-    await todos.todos();
-    document.getElementById('form_herramientas').reset();
-    e
-
+  await todos.todos();
+  e.target.reset();
 };
-
 
 init();
 // tabla_productos;

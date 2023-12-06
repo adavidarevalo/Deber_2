@@ -6,11 +6,11 @@
     <div class="col-lg-8 d-flex align-items-stretch">
         <div class="card w-100">
             <div class="card-body p-4">
-                <h5 class="card-title fw-semibold mb-4">Lista de Productos</h5>
+                <h5 class="card-title fw-semibold mb-4">Lista de Herramientas</h5>
 
                 <div class="table-responsive">
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_usuario">
-                        Nuevo Producto
+                        Nueva Herramienta
                     </button>
                     <table class="table text-nowrap mb-0 align-middle">
                         <thead class="text-dark fs-4">
@@ -38,7 +38,7 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody id="tabla_productos">
+                        <tbody id="tabla_herramientas">
 
                         </tbody>
                     </table>
@@ -54,36 +54,36 @@
         <div class="modal-content">
             <form method="post" id="form_herramientas">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Producto</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Herramienta</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="Nombre">Nombre</label>
-                        <input type="text" required class="form-control" id="Nombre" name="Nombre" placeholder="Nombre del producto" required>
+                        <input type="text" required class="form-control" id="Nombre" name="Nombre" placeholder="Nombre del Herramienta" required>
                     </div>
                      <div class="form-group">
                         <label for="Precio">Precio</label>
-                        <input type="number"  min="0" required class="form-control" id="Precio" name="Precio" placeholder="Precio del producto" required>
+                        <input type="number"  min="0" required class="form-control" id="Precio" name="Precio" placeholder="Precio del Herramienta" required>
                     </div>
 
                     <div class="form-group">
                         <label for="Cantidad">Cantidad</label>
-                        <input type="number" min="0" step="1" class="form-control" id="Cantidad" name="Cantidad" placeholder="Cantidad del producto" required>
+                        <input type="number" min="0" step="1" class="form-control" id="Cantidad" name="Cantidad" placeholder="Cantidad del Herramienta" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="Categoria">Categoria</label>
                         <select name="Categoria" id="Categoria" class="form-control">
-                            <option value="Herramientas">Herramientas</option>
-                            <option value="Piezas">Piezas</option>
-                            <option value="Tornillos">Tornillos</option>
+                            <option value="Herramientas manuales">Herramientas manuales</option>
+                            <option value="Herramientas eléctricas">Herramientas eléctricas</option>
+                            <option value="Herramientas de corte">Herramientas de corte</option>
                         </select>
                     </div>
 
                      <div class="form-group">
                         <label for="Descripcion">Descripción</label>
-                        <input type="text" class="form-control" id="Descripcion" name="Descripcion" placeholder="Descripcion del producto">
+                        <input type="text" class="form-control" id="Descripcion" name="Descripcion" placeholder="Descripcion del Herramienta">
                     </div>
                  
 
@@ -99,5 +99,5 @@
 
 <?php require_once('../html/script2.php') ?>
 
-<script src="producto.controller.js"></script>
-<script src="producto.model.js"></script>
+<script src="herramientas.controller.js"></script>
+<script src="herramientas.model.js"></script>

@@ -11,7 +11,7 @@ class Herramientas_Model {
   }
   todos() {
     var html = '';
-    $.get('../../Controllers/productos.controller.php?op=' + this.Ruta, res => {
+    $.get('../../Controllers/herramientas.controller.php?op=' + this.Ruta, res => {
       res = JSON.parse(res);
       $.each(res, (index, valor) => {
         var fondo;
@@ -37,37 +37,35 @@ class Herramientas_Model {
             </td></tr>
                 `;
       });
-      $('#tabla_productos').html(html);
+      $('#tabla_herramientas').html(html);
     });
   }
 
-  insertar() {
-    var dato = new FormData();
-    dato = this.Rol;
+  insertar(formData) {
+
     $.ajax({
-      url: '../../Controllers/productos.controller.php?op=insertar',
+      url: '../../Controllers/herramientas.controller.php?op=insertar',
       type: 'POST',
-      data: dato,
+      data: formData,
       contentType: false,
       processData: false,
       success: function (res) {
         res = JSON.parse(res);
         if (res === 'ok') {
-          Swal.fire('productos', 'Proucto Registrado', 'success');
+          Swal.fire('herramientas', 'Herramienta Registrado', 'success');
           todos_controlador();
         } else {
           Swal.fire('Error', res, 'error');
         }
       },
     });
-    this.limpia_Cajas();
   }
 
   eliminar(productoId) {
     var dato = new FormData();
     dato.append('id', productoId);
     $.ajax({
-      url: '../../Controllers/productos.controller.php?op=eliminar',
+      url: '../../Controllers/herramientas.controller.php?op=eliminar',
       type: 'POST',
       data: dato,
       contentType: false,
@@ -75,7 +73,7 @@ class Herramientas_Model {
       success: function (res) {
         res = JSON.parse(res);
         if (res === 'ok') {
-          Swal.fire('productos', 'Proucto Eliminado', 'success');
+          Swal.fire('erramienta', 'Herramienta Eliminado', 'success');
           todos_controlador();
         } else {
           Swal.fire('Error', res, 'error');
@@ -84,12 +82,4 @@ class Herramientas_Model {
     });
   }
 
-  limpia_Cajas() {
-    document.getElementById('Nombre').value = '';
-    document.getElementById('Precio').value = '';
-    document.getElementById('Cantidad').value = '';
-    document.getElementById('Categoria').value = '';
-    document.getElementById('Descripcion').value = '';
-    $('#Modal_usuario').modal('hide');
-  }
 }

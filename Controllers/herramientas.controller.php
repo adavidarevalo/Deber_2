@@ -1,10 +1,10 @@
 <?php
-require_once('../Models/cls_productos.model.php');
-$Productos = new Clase_Productos;
+require_once('../Models/cls_herramientas.model.php');
+$Herramientas = new Clase_Herramientas;
 switch ($_GET["op"]) {
     case 'todos':
         $datos = array(); //defino un arreglo
-        $datos = $Productos->todos(); //llamo al modelo de usuarios e invoco al procedimiento todos y almaceno en una variable
+        $datos = $Herramientas->todos(); //llamo al modelo de usuarios e invoco al procedimiento todos y almaceno en una variable
         while ($fila = mysqli_fetch_assoc($datos)) { //recorro el arreglo de datos
             $todos[] = $fila;
         }
@@ -25,7 +25,7 @@ switch ($_GET["op"]) {
         $descripcion = $_POST["Descripcion"];
 
         $datos = array(); //defino un arreglo
-        $datos = $Productos->insertar($nombre, $precio, $cantidad, $categoria, $descripcion); //llamo al modelo de usuarios e invoco al procedimiento insertar
+        $datos = $Herramientas->insertar($nombre, $precio, $cantidad, $categoria, $descripcion); //llamo al modelo de usuarios e invoco al procedimiento insertar
         echo json_encode($datos); //devuelvo el arreglo en formato json
         break;
     case 'actualizar':
@@ -43,8 +43,8 @@ switch ($_GET["op"]) {
         echo json_encode($datos); //devuelvo el arreglo en formato json
         break;
     case 'eliminar':
-        $productoId = $_POST["id"];
-        $Productos->eliminar($productoId); //llamo al modelo de usuarios e invoco al procedimiento uno y almaceno en una variable
+        $herramientaId = $_POST["id"];
+        $Herramientas->eliminar($herramientaId); //llamo al modelo de usuarios e invoco al procedimiento uno y almaceno en una variable
         echo json_encode($uno); //devuelvo el arreglo en formato json
         break;
 

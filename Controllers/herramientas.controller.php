@@ -47,6 +47,14 @@ switch ($_GET["op"]) {
         $Herramientas->eliminar($herramientaId); //llamo al modelo de usuarios e invoco al procedimiento uno y almaceno en una variable
         echo json_encode("ok"); //devuelvo el arreglo en formato json
         break;
+    case "ver":
+        $HerramientaId = $_GET["id"]; // Cambiado de UsuarioId a HerramientaId
+        $datos = array();
+        $datos = $Herramientas->uno($HerramientaId); // Cambiado de $usuarios a $Herramientas
+        $uno = mysqli_fetch_assoc($datos);
+        echo json_encode($uno);
+        break;
+
     default:
         break;
 }

@@ -33,7 +33,6 @@ class Herramientas_Model {
             <td>
             <button class='btn btn-success' onclick='editar(${valor.id})'>Editar</button>
             <button class='btn btn-danger' onclick='eliminar(${valor.id})'>Eliminar</button>
-            <button class='btn btn-info' onclick='ver(${valor.id})'>Ver</button>
             </td></tr>
                 `;
       });
@@ -42,7 +41,6 @@ class Herramientas_Model {
   }
 
   insertar(formData) {
-
     $.ajax({
       url: '../../Controllers/herramientas.controller.php?op=insertar',
       type: 'POST',
@@ -73,12 +71,22 @@ class Herramientas_Model {
       success: function (res) {
         res = JSON.parse(res);
         if (res === 'ok') {
-          Swal.fire('erramienta', 'Herramienta Eliminado', 'success');
+          Swal.fire('Herramienta', 'Herramienta Eliminado', 'success');
         } else {
           Swal.fire('Error', res, 'error');
         }
       },
     });
   }
+  ver(herramientaId) {
+ return new Promise((resolve, reject) => {
+   $.get('../../Controllers/herramientas.controller.php?op=ver&id=' + herramientaId, res => {
+     res = JSON.parse(res);
 
+     resolve(res);
+   }).fail(error => {
+     reject(error);
+   });
+ });
+  }
 }

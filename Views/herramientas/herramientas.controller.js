@@ -4,7 +4,7 @@
 //controlador
 
 function init() {
-  $('#form_herramientas').on('submit', function (e) {
+  $('#Modal_usuario').on('submit', function (e) {
     guardaryeditar(e);
   });
 }
@@ -40,5 +40,16 @@ const guardaryeditar = async e => {
   e.target.reset();
 };
 
+const editar = async (e) => {
+  const herramienta = new Herramientas_Model('', '', '', '', '', 'todos');
+  const actualHerramienta = await herramienta.ver(e);
+   $('#Modal_usuario').modal('show');
+   $('#staticBackdropLabel').text('Editar Herramienta');
+   $('#Nombre').val(actualHerramienta.Nombre);
+   $('#Precio').val(actualHerramienta.Precio);
+   $('#Cantidad').val(actualHerramienta.Cantidad);
+   $('#Categoria').val(actualHerramienta.Categoria);
+   $('#Descripcion').val(actualHerramienta.Descripcion);
+}
+
 init();
-// tabla_productos;

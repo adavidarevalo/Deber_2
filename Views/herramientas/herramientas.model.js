@@ -61,9 +61,9 @@ class Herramientas_Model {
     });
   }
 
-  eliminar(productoId) {
+  eliminar(herramientaId) {
     var dato = new FormData();
-    dato.append('id', productoId);
+    dato.append('id', herramientaId);
     $.ajax({
       url: '../../Controllers/herramientas.controller.php?op=eliminar',
       type: 'POST',
@@ -74,7 +74,6 @@ class Herramientas_Model {
         res = JSON.parse(res);
         if (res === 'ok') {
           Swal.fire('erramienta', 'Herramienta Eliminado', 'success');
-          todos_controlador();
         } else {
           Swal.fire('Error', res, 'error');
         }

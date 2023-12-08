@@ -45,13 +45,8 @@ switch ($_GET["op"]) {
     case 'eliminar':
         $herramientaId = $_POST["id"];
         $Herramientas->eliminar($herramientaId); //llamo al modelo de usuarios e invoco al procedimiento uno y almaceno en una variable
-        echo json_encode($uno); //devuelvo el arreglo en formato json
+        echo json_encode("ok"); //devuelvo el arreglo en formato json
         break;
-
-        $Correo = $_POST["Correo"];
-        $datos = array(); //defino un arreglo
-        $datos = $usuarios->verifica_correo($Correo); //llamo al modelo de usuarios e invoco al procedimiento uno y almaceno en una variable
-        $uno = mysqli_fetch_assoc($datos); //recorro el arreglo de datos
-        echo json_encode($uno); //devuelvo el arreglo en formato json
+    default:
         break;
 }

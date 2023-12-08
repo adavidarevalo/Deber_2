@@ -18,7 +18,7 @@ const todos_controlador = () => {
   todos.todos();
 };
 
-const eliminar = async herramientaId => {
+const eliminar = async(herramientaId) => {
   const todos = new Herramientas_Model('', '', '', '', '', 'todos');
   await todos.eliminar(herramientaId);
   await todos.todos();

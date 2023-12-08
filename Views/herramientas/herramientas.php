@@ -9,7 +9,9 @@
                 <h5 class="card-title fw-semibold mb-4">Lista de Herramientas</h5>
 
                 <div class="table-responsive">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_usuario">
+                    <button 
+                    id="btn_open_new"
+                    type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_usuario">
                         Nueva Herramienta
                     </button>
                     <table class="table text-nowrap mb-0 align-middle">
@@ -55,9 +57,9 @@
             <form method="post" id="form_herramientas">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Herramienta</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <input type="hidden" name="UsuarioId" id="UsuarioId">
                     <div class="form-group">
                         <label for="Nombre">Nombre</label>
                         <input type="text" required class="form-control" id="Nombre" name="Nombre" placeholder="Nombre del Herramienta" required>

@@ -4,8 +4,14 @@
 //controlador
 
 function init() {
-  $('#Modal_usuario').on('submit', function (e) {
+  $('#form_herramientas').on('submit', function (e) {
     guardaryeditar(e);
+  });
+  $('.modal-footer .btn-secondary').on('click', function () {
+    $('#form_herramientas')[0].reset();
+  });
+  $('#btn_open_new').on('click', function () {
+  $('#staticBackdropLabel').text('Nueva Herramienta');
   });
 }
 
@@ -18,13 +24,13 @@ const todos_controlador = () => {
   todos.todos();
 };
 
-const eliminar = async(herramientaId) => {
+const eliminar = async herramientaId => {
   const todos = new Herramientas_Model('', '', '', '', '', 'todos');
   await todos.eliminar(herramientaId);
   await todos.todos();
 };
 
-const guardaryeditar = async e => {
+const guardaryeditar =  e => {
   e.preventDefault();
   const formData = new FormData();
 
@@ -35,21 +41,26 @@ const guardaryeditar = async e => {
     });
 
   const todos = new Herramientas_Model('', '', '', '', '', '');
-  await todos.insertar(formData);
-  await todos.todos();
+  if (formData.get('UsuarioId')) {
+    todos.editar(formData);
+  } else {
+    todos.insertar(formData);
+  }
   e.target.reset();
+    $('#Modal_usuario').modal('hide');
 };
 
-const editar = async (e) => {
+const editar = async e => {
   const herramienta = new Herramientas_Model('', '', '', '', '', 'todos');
   const actualHerramienta = await herramienta.ver(e);
-   $('#Modal_usuario').modal('show');
-   $('#staticBackdropLabel').text('Editar Herramienta');
-   $('#Nombre').val(actualHerramienta.Nombre);
-   $('#Precio').val(actualHerramienta.Precio);
-   $('#Cantidad').val(actualHerramienta.Cantidad);
-   $('#Categoria').val(actualHerramienta.Categoria);
-   $('#Descripcion').val(actualHerramienta.Descripcion);
-}
+  $('#Modal_usuario').modal('show');
+  $('#staticBackdropLabel').text('Editar Herramienta');
+  $('#Nombre').val(actualHerramienta.Nombre);
+  $('#Precio').val(actualHerramienta.Precio);
+  $('#Cantidad').val(actualHerramienta.Cantidad);
+  $('#Categoria').val(actualHerramienta.Categoria);
+  $('#Descripcion').val(actualHerramienta.Descripcion);
+  $('#UsuarioId').val(actualHerramienta.id);
+};
 
 init();

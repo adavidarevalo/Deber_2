@@ -11,7 +11,7 @@ class Herramientas_Model {
   }
   todos() {
     var html = '';
-    $.get('../../Controllers/herramientas.controller.php?op=' + this.Ruta, res => {
+    $.get('../../Controllers/herramientas.controller.php?op=todos', res => {
       res = JSON.parse(res);
       $.each(res, (index, valor) => {
         var fondo;
@@ -79,14 +79,32 @@ class Herramientas_Model {
     });
   }
   ver(herramientaId) {
- return new Promise((resolve, reject) => {
-   $.get('../../Controllers/herramientas.controller.php?op=ver&id=' + herramientaId, res => {
-     res = JSON.parse(res);
+    return new Promise((resolve, reject) => {
+      $.get('../../Controllers/herramientas.controller.php?op=ver&id=' + herramientaId, res => {
+        res = JSON.parse(res);
 
-     resolve(res);
-   }).fail(error => {
-     reject(error);
-   });
- });
+        resolve(res);
+      }).fail(error => {
+        reject(error);
+      });
+    });
+  }
+  editar(formData) {
+    $.ajax({
+      url: '../../Controllers/herramientas.controller.php?op=actualizar',
+      type: 'POST',
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function (res) {
+        res = JSON.parse(res);
+        if (res === 'ok') {
+          Swal.fire('herramientas', 'Herramienta Actualizada', 'success');
+          todos_controlador();
+        } else {
+          Swal.fire('Error', res, 'error');
+        }
+      },
+    });
   }
 }

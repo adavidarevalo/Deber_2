@@ -72,4 +72,31 @@ class Clase_Herramientas
             $con->close();
         }
     }
+        public function actualizar($UsuarioId, $nombre, $precio, $cantidad, $categoria, $descripcion)
+{
+    try {
+        $con = new Clase_Conectar_Base_Datos();
+        $con = $con->ProcedimientoConectar();
+
+        $cadena = "UPDATE `Herramientas` SET 
+                   `Nombre`='$nombre', 
+                   `Precio`='$precio', 
+                   `Cantidad`='$cantidad', 
+                   `Categoria`='$categoria', 
+                   `Descripcion`='$descripcion' 
+                   WHERE `id`='$UsuarioId'";
+
+        $result = mysqli_query($con, $cadena);
+
+        if ($result) {
+            return 'ok';
+        } else {
+            return 'Error al actualizar los datos: ' . mysqli_error($con);
+        }
+    } catch (Throwable $th) {
+        return $th->getMessage();
+    } finally {
+        $con->close();
+    }
+}
 }
